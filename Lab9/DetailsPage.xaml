@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Lab9.ViewModel"
+             xmlns:model="clr-namespace:Lab9.Model"
+             x:DataType="vm:EmployeeViewModel"
+             x:Class="Lab9.DetailsPage"
+             Title="Add Employee">
+    <VerticalStackLayout
+        
+        HorizontalOptions="Center">
+        <Label
+            x:Name="lblPrompt"
+            Margin="20,10,10,20"
+            Text="Add New Record"
+            FontSize="18"
+            FontAttributes="Bold"/>
+        <Entry
+            x:Name="name"
+            Text="{Binding Employee.FullName}"
+            Placeholder="Enter Name"
+            Margin="10,0,0,10"
+            MinimumWidthRequest="200"/>
+        <Entry
+            x:Name="SIN"
+            Text="{Binding Employee.SINFormat}"
+            Placeholder="Enter SIN"
+            Keyboard="Numeric"
+            Margin="10,0,0,10"
+            MinimumWidthRequest="200"/>
+        <DatePicker
+            Date="{Binding Employee.HireDate}"
+            Margin="10,0,0,10"
+            MinimumWidthRequest="200"/>
+        <HorizontalStackLayout
+            HorizontalOptions="End">
+            <Button
+                Text="Save"
+                Clicked="Button_Clicked"
+                CornerRadius="10"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

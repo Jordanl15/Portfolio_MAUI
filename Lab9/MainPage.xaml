@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Lab9.ViewModel"
+             xmlns:model="clr-namespace:Lab9.Model"
+             x:DataType="vm:EmployeeViewModel"
+             x:Class="Lab9.MainPage"
+             Title="Clients">
+
+    <ScrollView>
+        <Grid
+            RowDefinitions="auto,*"
+            Padding="10"
+            RowSpacing="10">
+
+            <HorizontalStackLayout HorizontalOptions="End">
+                <Button
+                    x:Name="btnAdd"
+                    Clicked="btnAdd_Clicked"
+                    BackgroundColor="LightGreen"
+                    TextColor="Black"
+                    Text="Add New Employee"
+                    CornerRadius="10"
+                    Margin="0,0,30,0"/>
+            </HorizontalStackLayout>
+
+            <CollectionView
+                x:Name="cv"
+                Grid.Row="1"
+                ItemsSource="{Binding Employees}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Employee">
+                        <Frame HeightRequest="90" BorderColor="Black">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    NumberOfTapsRequired="1"
+                                    Tapped="TapGestureRecognizer_Tapped"/>
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="auto,*">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding FullName}" FontAttributes="Bold"/>
+                                    <Label Text=" " FontAttributes="Bold"/>
+                                    <Label Text="{Binding SINFormat}" FontAttributes="Bold"/>
+                                </StackLayout>
+                                <HorizontalStackLayout
+                                    Grid.Column="1"
+                                    Spacing="10"
+                                    HorizontalOptions="End">
+                                    <Button
+                                        Text="Details"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EmployeeViewModel}},Path=ShowCommand}" 
+                                        CommandParameter="{Binding .}"/>
+                                    <!--add "Command" to end of function name for Path=-->
+                                    <Button
+                                        Text="Delete"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EmployeeViewModel}},Path=DeleteCommand}" 
+                                        CommandParameter="{Binding ID}"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </ScrollView>
+    
+
+</ContentPage>
