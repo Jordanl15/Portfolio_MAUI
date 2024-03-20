@@ -1,4 +1,4 @@
-# Lab9
+# Cross Platform Project
 
 Objective:
 The objective of this project was to develop a multi-platform application using .NET MAUI, implementing the Model-View-ViewModel (MVVM) design pattern. The application manages employee records through a SQLite database, providing functionalities to insert new records and display existing ones.
